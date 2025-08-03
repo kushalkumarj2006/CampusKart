@@ -1,3 +1,4 @@
+// Global state
 let currentView = 'home';
 let cart = [];
 let printSettings = {
@@ -26,9 +27,17 @@ const products = [
 
 // Initialize the app
 document.addEventListener('DOMContentLoaded', function() {
-    loadProducts();
-    updateCartDisplay();
-    showView('home');
+    console.log('CampusKart app initializing...');
+    try {
+        loadProducts();
+        console.log('Products loaded successfully');
+        updateCartDisplay();
+        console.log('Cart display updated');
+        showView('home');
+        console.log('Home view shown');
+    } catch (error) {
+        console.error('Error during initialization:', error);
+    }
 });
 
 // Navigation functions
@@ -188,7 +197,13 @@ function processPayment() {
 
 // Stationery Shop functions
 function loadProducts() {
+    console.log('Loading products...');
     const grid = document.getElementById('productsGrid');
+    if (!grid) {
+        console.error('productsGrid element not found!');
+        return;
+    }
+    console.log('productsGrid found:', grid);
     grid.innerHTML = '';
     
     products.forEach(product => {
@@ -202,6 +217,7 @@ function loadProducts() {
         `;
         grid.appendChild(productCard);
     });
+    console.log(`Loaded ${products.length} products`);
 }
 
 function addToCart(productId) {

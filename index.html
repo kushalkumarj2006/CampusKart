@@ -1,0 +1,273 @@
+<DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusKart - Grab n Go,Anytime!</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <div class="mobile-nav-header">
+            <div class="nav-brand">
+                <div class="brand-icon">🛒</div>
+                <div>
+                    <h1>CampusKart</h1>
+                </div>
+            </div>
+            <button class="menu-toggle" onclick="toggleMobileMenu()">☰</button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <button class="nav-item active" data-view="home" onclick="showView('home')">🏠 Home</button>
+            <button class="nav-item" data-view="print" onclick="showView('print')">🖨️ Print</button>
+            <button class="nav-item" data-view="shop" onclick="showView('shop')">🛍️ Shop</button>
+            <button class="nav-item" data-view="assistant" onclick="showView('assistant')">🤖 AI Assistant</button>
+        </div>
+    </nav>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
+        <div class="nav-content">
+            <div class="nav-brand-desktop">
+                <div class="brand-icon-desktop">🛒</div>
+                <div>
+                    <h1>CampusKart</h1>
+                    <p>Grab n Go,Anytime!</p>
+                </div>
+            </div>
+            
+            <div class="nav-items">
+                <button class="nav-btn active" data-view="home" onclick="showView('home')">🏠 Home</button>
+                <button class="nav-btn" data-view="print" onclick="showView('print')">🖨️ Print Documents</button>
+                <button class="nav-btn" data-view="shop" onclick="showView('shop')">🛍️ Shop Stationery</button>
+                <button class="nav-btn" data-view="assistant" onclick="showView('assistant')">🤖 AI Assistant</button>
+            </div>
+            
+            <div class="nav-stats">
+                <div class="stat-card">
+                    <div class="stat-value">24/7</div>
+                    <div class="stat-label">Available</div>
+                </div>
+                
+                <div class="stat-grid">
+                    <div class="stat-mini">
+                        <div class="stat-value">₹1</div>
+                        <div class="stat-label">B&W Print</div>
+                    </div>
+                    <div class="stat-mini">
+                        <div class="stat-value">30s</div>
+                        <div class="stat-label">Fast Print</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home View -->
+        <div id="home" class="view">
+            <section class="hero-section">
+                <div class="hero-bg">
+                    <div class="hero-glow hero-glow-1"></div>
+                    <div class="hero-glow hero-glow-2"></div>
+                </div>
+                
+                <div class="hero-content">
+                    <div class="hero-brand">
+                        <div class="hero-icon">🛒</div>
+                        <h1 class="hero-title">CampusKart</h1>
+                        <p class="hero-tagline">Grab n Go,Anytime!</p>
+                    </div>
+                    
+                    <div class="hero-headline">
+                        <h2>24/7 AI-Powered Stationery & Printing</h2>
+                        <p>Your campus companion for instant stationery and lightning-fast printing. Available round the clock, powered by AI assistance.</p>
+                    </div>
+                    
+                    <div class="feature-pills">
+                        <div class="pill">⏰ 24/7 Available</div>
+                        <div class="pill">🤖 AI Assistant</div>
+                        <div class="pill">⚡ 30s Printing</div>
+                        <div class="pill">💳 Digital Payment</div>
+                    </div>
+                    
+                    <div class="hero-buttons">
+                        <button class="btn btn-action" onclick="showView('shop')">🛍️ Shop Stationery</button>
+                        <button class="btn btn-hero" onclick="showView('print')">🖨️ Print Documents</button>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-value">24/7</div>
+                            <div class="stat-label">Always Open</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">₹1</div>
+                            <div class="stat-label">Starting Price</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">30s</div>
+                            <div class="stat-label">Print Speed</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Print Service View -->
+        <div id="print" class="view" style="display: none;">
+            <div class="service-header">
+                <h2>🖨️ Print Documents</h2>
+                <p>Upload and print your documents instantly</p>
+            </div>
+            
+            <div class="print-container">
+                <div class="upload-section">
+                    <div class="upload-area">
+                        <input type="file" id="fileInput" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" onchange="handleFileUpload(event)" />
+                        <label for="fileInput">
+                            <div class="upload-icon">📄</div>
+                            <h3>Choose File to Print</h3>
+                            <p>PDF, Images, or Documents</p>
+                            <div class="upload-btn">Browse Files</div>
+                        </label>
+                    </div>
+                    
+                    <div id="filePreview" class="file-preview" style="display: none;">
+                        <div class="file-info">
+                            <div class="file-icon">📄</div>
+                            <div>
+                                <div class="file-name" id="fileName">document.pdf</div>
+                                <div class="file-pages"><span id="pageCount">0</span> pages</div>
+                            </div>
+                            <button class="remove-file" onclick="removeFile()">✕</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="print-options">
+                    <h3>Print Options</h3>
+                    
+                    <div class="option-grid">
+                        <div class="option-group">
+                            <label>Print Type</label>
+                            <button id="printTypeBtn" class="option-btn" onclick="togglePrintType()">Black & White print</button>
+                            <div class="price-display" id="priceDisplay">₹1/page</div>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label>Sides</label>
+                            <button id="doubleSidedBtn" class="option-btn" onclick="toggleDoubleSided()">Single Sided</button>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label>Copies</label>
+                            <div class="copies-control">
+                                <button onclick="changeCopies(-1)">−</button>
+                                <span id="copiesCount">1</span>
+                                <button onclick="changeCopies(1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="payment-section">
+                    <div class="price-summary">
+                        <div class="total-price">Total: ₹<span id="totalPrice">0.00</span></div>
+                    </div>
+                    <button id="paymentBtn" class="btn btn-primary" onclick="processPayment()" disabled>
+                        💳 Pay & Print Now
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shop View -->
+        <div id="shop" class="view" style="display: none;">
+            <div class="service-header">
+                <h2>🛍️ Stationery Shop</h2>
+                <p>Get all your stationery needs instantly</p>
+            </div>
+            
+            <div class="shop-container">
+                <div class="products-section">
+                    <div class="products-grid" id="productsGrid">
+                        <!-- Products will be loaded here by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="cart-section">
+                    <h3>🛒 Your Cart</h3>
+                    <div class="cart-items" id="cartItems">
+                        <p class="empty-cart">Your cart is empty</p>
+                    </div>
+                    <div class="cart-total">
+                        <strong>Total: ₹<span id="cartTotal">0</span></strong>
+                    </div>
+                    <button id="checkoutBtn" class="btn btn-primary" onclick="checkout()" disabled>
+                        💳 Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Assistant View -->
+        <div id="assistant" class="view" style="display: none;">
+            <div class="service-header">
+                <h2>🤖 AI Assistant</h2>
+                <p>Get instant help with anything</p>
+            </div>
+            
+            <div class="chat-container">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot-message">
+                        <div class="message-content">
+                            Hi! I'm your CampusKart AI assistant. 👋<br><br>
+                            I can help you with:
+                            <br>• 📦 Finding stationery items
+                            <br>• 🖨️ Printing questions
+                            <br>• 💰 Pricing information
+                            <br>• 📍 Location details
+                            <br><br>What would you like to know?
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quick-questions">
+                    <button class="quick-btn" onclick="askQuestion('What items are available?')">📦 Available Items</button>
+                    <button class="quick-btn" onclick="askQuestion('How much does printing cost?')">💰 Printing Costs</button>
+                    <button class="quick-btn" onclick="askQuestion('Where are the machines located?')">📍 Locations</button>
+                    <button class="quick-btn" onclick="askQuestion('What payment methods do you accept?')">💳 Payment Options</button>
+                </div>
+                
+                <div class="chat-input-section">
+                    <div class="chat-input-container">
+                        <input type="text" id="chatInput" placeholder="Ask me anything..." onkeypress="handleChatEnter(event)" />
+                        <button class="send-btn" onclick="sendMessage()">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation (Mobile) -->
+    <nav class="bottom-nav">
+        <button class="bottom-nav-item active" data-view="home" onclick="showView('home')">
+            <span>🏠</span>
+            <span>Home</span>
+        </button>
+        <button class="bottom-nav-item" data-view="print" onclick="showView('print')">
+            <span>🖨️</span>
+            <span>Print</span>
+        </button>
+        <button class="bottom-nav-item" data-view="shop" onclick="showView('shop')">
+            <span>🛍️</span>
+            <span>Shop</span>
+        </button>
+        <button class="bottom-nav-item" data-view="assistant" onclick="showView('assistant')">
+            <span>🤖</span>
+            <span>AI</span>
+        </button>
+    </nav>
